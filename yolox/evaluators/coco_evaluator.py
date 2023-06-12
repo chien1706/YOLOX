@@ -17,7 +17,7 @@ import numpy as np
 
 import torch
 
-from yolox.data.datasets import COCO_CLASSES
+from yolox.data.datasets.coco_classes import COCO_CLASSES
 from yolox.utils import (
     gather,
     is_main_process,

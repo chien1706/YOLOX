@@ -10,7 +10,8 @@ from loguru import logger
 import cv2
 
 import torch
-
+import sys
+sys.path.append("/mnt/nvme0n1/trinhchien/Vincom/YOLOX/")
 from yolox.data.data_augment import ValTransform
 from yolox.data.datasets import COCO_CLASSES
 from yolox.exp import get_exp

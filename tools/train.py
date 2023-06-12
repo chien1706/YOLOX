@@ -9,7 +9,8 @@ from loguru import logger
 
 import torch
 import torch.backends.cudnn as cudnn
-
+import sys
+sys.path.append("/mnt/nvme0n1/trinhchien/Vincom/YOLOX/")
 from yolox.core import launch
 from yolox.exp import Exp, check_exp_value, get_exp
 from yolox.utils import configure_module, configure_nccl, configure_omp, get_num_devices
@@ -122,13 +123,15 @@ if __name__ == "__main__":
     configure_module()
     args = make_parser().parse_args()
     exp = get_exp(args.exp_file, args.name)
-    exp.merge(args.opts)
+    # exp.merge(args.opts)
     check_exp_value(exp)
 
     if not args.experiment_name:
         args.experiment_name = exp.exp_name
 
-    num_gpu = get_num_devices() if args.devices is None else args.devices
+    # num_gpu = get_num_devices() if args.devices is None else args.devices
+    num_gpu = 2
+    print("num_gpu: ", num_gpu)
     assert num_gpu <= get_num_devices()
 
     if args.cache is not None:

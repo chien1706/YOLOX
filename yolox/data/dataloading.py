@@ -11,8 +11,9 @@ import numpy as np
 import torch
 from torch.utils.data.dataloader import DataLoader as torchDataLoader
 from torch.utils.data.dataloader import default_collate
-
-from .samplers import YoloBatchSampler
+import sys
+sys.path.append("/mnt/nvme0n1/trinhchien/Vincom/YOLOX/yolox/data/")
+from samplers import YoloBatchSampler
 
 
 def get_yolox_datadir():

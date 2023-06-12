@@ -7,9 +7,10 @@ import os
 import cv2
 import numpy as np
 from pycocotools.coco import COCO
-
-from ..dataloading import get_yolox_datadir
-from .datasets_wrapper import CacheDataset, cache_read_img
+import sys
+sys.path.append("/mnt/nvme0n1/trinhchien/Vincom/YOLOX/yolox/data/")
+from dataloading import get_yolox_datadir
+from datasets.datasets_wrapper import CacheDataset, cache_read_img
 
 
 def remove_useless_info(coco):
@@ -56,7 +57,7 @@ class COCODataset(CacheDataset):
             preproc: data augmentation strategy
         """
         if data_dir is None:
-            data_dir = os.path.join(get_yolox_datadir(), "COCO")
+            data_dir = os.path.join(get_yolox_datadir(), "coco128")
         self.data_dir = data_dir
         self.json_file = json_file
 
@@ -186,3 +187,15 @@ class COCODataset(CacheDataset):
         if self.preproc is not None:
             img, target = self.preproc(img, target, self.input_dim)
         return img, target, img_info, img_id
+
+if __name__ == '__main__':
+    dataset = CacheDataset(
+        data_dir='/mnt/nvme0n1/trinhchien/Vincom/YOLOX/data/coco128/',
+        json_file="instances_train2017.json",
+        name="train2017",
+        img_size=(416, 416),
+        preproc=None,
+        cache=False,
+        cache_type="ram",
+    )
+    print("ABCD")
